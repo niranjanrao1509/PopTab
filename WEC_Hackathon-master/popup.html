@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html style=''>
 <style>
+  
   .btn-group button {
+    font-size: 16px;
     background-color: #4CAF50; /* Green background */
     border: 1px solid green; /* Green border */
     color: white; /* White text */
     padding: 8px 50px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
-    width: 100%; /* Set a width if needed */
+    width: 96%; /* Set a width if needed */
     display: block; /* Make the buttons appear below each other */
 }
 
@@ -19,24 +21,41 @@
 .btn-group button:hover {
     background-color: #3e8e41;
 }
-    .topnav input[type=text] {
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
+#message{
+  font-size: 35px;
+  color:green;
 }
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 12px 18px;
   font-size: 16px;
+  cursor: pointer;
 }
+.btn:hover {
+  background-color: green;
+  color: white;
+}
+/* Green */
+.success {
+  border-color: #4CAF50;
+  color: green;
+}
+  input[type=text] {
+  float: center;
+  padding: 6px;
+  border: 2px;
+  border-color: #3e8e41;
+  border-style: solid;
+  margin-top: 8px;
+  margin-right: 100px;
+  font-size: 17px;
+  width:93%;
+}
+/* #searchbox{
+  width:100%;
+} */
 </style>
 <head>
     <script src='./popup.js'></script>
@@ -44,21 +63,22 @@
 <body style="width:400px;">
 
 <div id='message'>WEC Hackathon</div>
+
 <input id="searchBox" type="text" placeholder="Search..">
-<button type="button" id="search">Search</button>
-<button type="button" id="pop">Pop Tabs</button>
-<button type="button" id="showLinks">Show All</button>
-<button type="button" id="clear">Clear</button>
+<button type="button" class="btn success" id="search">Search</button>
+<button type="button" class="btn success" id="pop">Pop Tabs</button>
+<button type="button" class="btn success" id="showLinks">Show All</button>
+<button type="button" class="btn success" id="clear">Clear</button> 
 
 
 
 
 <div class="btn-group">
+
+
   <button type="button" id="group" onclick="doGroup()">By Content</button>
   <button id="title" onclick="doTitle()">By Title</button>
   <button id="url" onclick="doUrl()">By URL</button>
-  <!-- <button id="doAll" onclick="doAll()">Show All</button> -->
-  <!-- <button id="getAll" onclick="getAll()">Get All</button> -->
 
 </div>
 <div class="btn-group" id="div1">
