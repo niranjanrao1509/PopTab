@@ -19,5 +19,5 @@ var myfunc = function()
 {
     chrome.tabs.update(tempTabs[Number(this.id)].id, {active: true, highlighted: true});
 }
-chrome.tabs.query({currentWindow:true},func);
+chrome.tabs.query({currentWindow:false},func);
 
