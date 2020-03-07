@@ -197,12 +197,9 @@ var doGroup = function() {
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             var arr = new Array(tempTabs.length);
-            //console.log(arr);
-            //console.log(this);
             var count = 0;
             var tabObject = JSON.parse(this.responseText);
-            //alert(this.Date);
-            //alert(this.responseText);
+            alert(this.responseText);
             for ( var i = 0 ; i < tabObject.cluster_list.length ; i++ )
             {
                 var keys = Object.keys(tabObject.cluster_list[i].document_list);
@@ -225,13 +222,8 @@ var doGroup = function() {
             
         }
     });
-    var data = "key=8f15a67478a01cbbe2497542550c1117&lang=en&txt=";
+    var data = "key=536589752258a422b8dc6d26e1127a13&lang=en&txt=";
     var moveAll = function(tabs){
-        //alert(tabs)
-        //alert(tabs.label);
-        //alerts(tabs.category_list);
-        test = JSON.stringify(tabs);
-        // alert(test);
         tempTabs = tabs;
         my_urls = [];
         var my_titles = [];
@@ -245,7 +237,9 @@ var doGroup = function() {
     
     var func = function(my_titles){
         for ( var i = 0 ;i < my_titles.length ; i++)
-        {oeplace("/[^a-zA-Z? ]/g, "," ");
+        {
+            my_titles[i] = my_titles[i].replace("Uncategorized","");
+            my_titles[i] = my_titles[i].replace("/[^a-zA-Z? ]/g, "," ");
             my_titles[i] = my_titles[i].replace("  "," ");
             
         }
@@ -254,11 +248,10 @@ var doGroup = function() {
             for(var i = 1 ; i < my_titles.length; i++)
             {
                 data = data.concat("\n",my_titles[i]);
-                //console.log(data);
             }
             xhr.open("POST", "http://api.meaningcloud.com/clustering-1.1");
             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            // alert(data);
+            
             xhr.send(data);
     }
     var count = 0;
@@ -266,7 +259,7 @@ var doGroup = function() {
         var my_new_titles = new Array(my_titles.length);
         for( var i = 0 ;i < my_titles.length ; i++)
         {
-            var data = "key=8f15a67478a01cbbe2497542550c1117&txt=";
+            var data = "key=536589752258a422b8dc6d26e1127a13&txt=";
             data = data.concat(my_titles[i],"&model=IAB_en");
             var xhr = new XMLHttpRequest();
             xhr.withCredentials = true;
@@ -306,7 +299,6 @@ var doGroup = function() {
     
     chrome.tabs.query({ currentWindow: true}, moveAll);
 };
-
 var myFunc = function(){
     document.getElementById('group').innerHTML = "Waiting";
 }
@@ -374,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
  document.getElementById('group').addEventListener('click', doGroup);
 document.getElementById('title').addEventListener('click', doTitle);
 document.getElementById('url').addEventListener('click', doUrl);
-document.getElementById('doAll').addEventListener('click',doAll);
+// document.getElementById('doAll').addEventListener('click',doAll);
 // document.getElementById('getAll').addEventListener('click',getAll);
  
 });
